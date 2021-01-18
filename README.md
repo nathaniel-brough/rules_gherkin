@@ -1,5 +1,5 @@
 ![bazel_cucumber](doc/imgs/bazel_cucumber.png)
-![Bazel](https://github.com/silvergasp/rules_gherkin/workflows/Bazel/badge.svg)
+![Bazel](https://github.com/silvergasp/rules_gherkin/workflows/Bazel/badge.svg) [![docs](https://img.shields.io/badge/docs-latest-brightgreen.svg?style=flat)](https://silvergasp.github.io/rules_gherkin/)
 # rules_gherkin
 A set of bazel rules for BDD with [cucumber/gherkin](https://cucumber.io/).
 
