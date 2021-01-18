@@ -1,5 +1,5 @@
-![bazel_cucumber](doc/imgs/bazel_cucumber.png)
-# rules_gherkin
+![bazel_cucumber](https://github.com/silvergasp/rules_gherkin/blob/main/doc/imgs/bazel_cucumber.png)
+# Rules Gherkin
 A set of bazel rules for BDD with [cucumber/gherkin](https://cucumber.io/).
 
 NOTE: This is alpha level software, the API may change without notice
