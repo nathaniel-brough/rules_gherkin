@@ -1,0 +1,26 @@
+name: Bazel
+
+on: [push]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Make cache directory
+      run: mkdir -p ~/.cache/bazel_disk_cache
+
+    - name: cache bazel
+      id: cache-bazel
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/bazel_disk_cache 
+        key: ${{ runner.os }}-bazel
+    
+    - name: build
+      run: bazelisk build //... --disk_cache=~/.cache/bazel_disk_cache
+
+    - name: test
+      run: bazelisk test //... --disk_cache=~/.cache/bazel_disk_cache
