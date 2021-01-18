@@ -12,7 +12,7 @@ Add the following to your WORKSPACE
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 git_repository(
     name = "rules_gherkin",
-    commit = "COMMIT", # Update this to match latest commit
+    commit = "ef361f40f9716ad8a3c6a8a21111bb80d4cbd927", # Update this to match latest commit
     remote = "https://github.com/silvergasp/rules_gherkin.git"
 )
 load("@rules_gherkin//:gherkin_deps.bzl","gherkin_deps")
