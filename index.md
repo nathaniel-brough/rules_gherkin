@@ -1,37 +1,58 @@
-## Welcome to GitHub Pages
+![bazel_cucumber](doc/imgs/bazel_cucumber.png)
+# rules_gherkin
+A set of bazel rules for BDD with [cucumber/gherkin](https://cucumber.io/).
 
-You can use the [editor on GitHub](https://github.com/silvergasp/rules_gherkin/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+NOTE: This is alpha level software, the API may change without notice
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Getting started
+Add the following to your WORKSPACE
 
-### Markdown
+``` python
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+git_repository(
+    name = "rules_gherkin",
+    commit = "COMMIT", # Update this to match latest commit
+    remote = "https://github.com/silvergasp/rules_gherkin.git"
+)
+load("@rules_gherkin//:gherkin_deps.bzl","gherkin_deps")
+gherkin_deps()
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+load("@rules_gherkin//:gherkin_workspace.bzl","gherkin_workspace")
+gherkin_workspace()
+```
+Example BUILD file.
 
-```markdown
-Syntax highlighted code block
+```python
+load("//gherkin:defs.bzl", "gherkin_library", "gherkin_test")
 
-# Header 1
-## Header 2
-### Header 3
+gherkin_library(
+    name = "feature_specs",
+    srcs = glob(["**/*.feature"]),
+)
 
-- Bulleted
-- List
+gherkin_test(
+    name = "calc_test",
+    steps = ":calculator_steps",
+    deps = [":feature_specs"],
+)
 
-1. Numbered
-2. List
+load("//gherkin:defs.bzl", "cc_gherkin_steps")
 
-**Bold** and _Italic_ and `Code` text
+cc_gherkin_steps(
+    name = "calculator_steps",
+    srcs = [
+        "CalculatorSteps.cpp",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//examples/Calc/src:calculator",
+        "@cucumber_cpp//src:cucumber_main",
+        "@gtest",
+    ],
+)
 
-[Link](url) and ![Image](src)
+
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/silvergasp/rules_gherkin/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+## Attribution
+Big thank you to 'Paolo Ambrosio', who authored the [cucumber-cpp](https://github.com/cucumber/cucumber-cpp) from whom I copied and modified the //examples directory in this repository. The examples/LICENCE.txt has been added to reflect the origins of the example.
