@@ -54,5 +54,72 @@ cc_gherkin_steps(
 
 ```
 
+<!-- Generated with Stardoc: http://skydoc.bazel.build -->
+
+<a name="#gherkin_library"></a>
+
+## gherkin_library
+
+<pre>
+gherkin_library(<a href="#gherkin_library-name">name</a>, <a href="#gherkin_library-deps">deps</a>, <a href="#gherkin_library-srcs">srcs</a>)
+</pre>
+
+
+
+**ATTRIBUTES**
+
+
+| Name  | Description | Type | Mandatory | Default |
+| :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
+| name |  A unique name for this target.   | <a href="https://bazel.build/docs/build-ref.html#name">Name</a> | required |  |
+| deps |  A list of other gherkin_library scenarios to include   | <a href="https://bazel.build/docs/build-ref.html#labels">List of labels</a> | optional | [] |
+| srcs |  Gherkin feature specifications   | <a href="https://bazel.build/docs/build-ref.html#labels">List of labels</a> | optional | [] |
+
+
+<a name="#gherkin_test"></a>
+
+## gherkin_test
+
+<pre>
+gherkin_test(<a href="#gherkin_test-name">name</a>, <a href="#gherkin_test-deps">deps</a>, <a href="#gherkin_test-steps">steps</a>)
+</pre>
+
+
+
+**ATTRIBUTES**
+
+
+| Name  | Description | Type | Mandatory | Default |
+| :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
+| name |  A unique name for this target.   | <a href="https://bazel.build/docs/build-ref.html#name">Name</a> | required |  |
+| deps |  A list of gherkin_library definitions   | <a href="https://bazel.build/docs/build-ref.html#labels">List of labels</a> | optional | [] |
+| steps |  The steps implementation to test the gherkin features against   | <a href="https://bazel.build/docs/build-ref.html#labels">Label</a> | optional | None |
+
+
+<a name="#cc_gherkin_steps"></a>
+
+## cc_gherkin_steps
+
+<pre>
+cc_gherkin_steps(<a href="#cc_gherkin_steps-attrs">attrs</a>)
+</pre>
+
+ cc_gherkin_steps The steps implementation for a set of gherkin features
+
+Wraps cc_binary with cucumber context https://docs.bazel.build/versions/master/be/c-cpp.html#cc_binary
+
+
+**PARAMETERS**
+
+
+| Name  | Description | Default Value |
+| :-------------: | :-------------: | :-------------: |
+| attrs |  Rule attributes   |  none |
+
+
+
+
 ## Attribution
 Big thank you to 'Paolo Ambrosio', who authored the [cucumber-cpp](https://github.com/cucumber/cucumber-cpp) from whom I copied and modified the //examples directory in this repository. The examples/LICENCE.txt has been added to reflect the origins of the example.
+
+
